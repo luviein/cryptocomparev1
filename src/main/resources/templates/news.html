@@ -8,34 +8,86 @@
     <title>Latest Crypto News</title>
 
     <style>
+        *{
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 14px;
+        }
+        h1{ 
+            padding-top: 30px;
+            text-align: center;
+        }
 
         tr {
             border: 1px solid black;
             padding: 5px;
+            width: fit-content;
         }
 
         table {
             border-collapse: collapse;
+        }
+
+        img {
+            float:left ;
+            margin-right: 15px;
+            height: 100px;
+            width: 150px;
+        }
+        
+        .image{
+            flex-basis: 100px;
+        }
+        .container{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container{
+            margin: 50px auto;
+            width: 70%;
+
+        }
+
+        .text{
+            display:inline-table;
+
+        }
+
+        button{
+            top: 15%;
+
         }
     </style>
 </head>
 
 <body>
     <h1>Crypto News of The Day</h1>
-    <div>
+    <!-- <div class="container">
         <table>
-            <tr th:each="data : ${latestNews}" style="border: 1px solid black;">
+            <tr th:each="data : ${latestNews}">
                 <td>
                     <table>
                         <tr th:each="newsInfo : ${data.newsInfo}">
                             <td>
-                                Id: <span th:text="${newsInfo.id}"></span><br>
-                                <span th:text="${newsInfo.title}"></span><br>
+                                
+                                <div class ="image">
+                                    <img data-th-src="${newsInfo.imageURL}"/><br>
+                                </div> 
+                                <div class="text">
+                                    Id: <span th:text="${newsInfo.id}"></span><br>
+                                    <strong><span th:text="${newsInfo.title}"></span></strong><br>
+                                    <span th:text="${newsInfo.body}"></span><br>
+                                    Categories: <span th:text="${newsInfo.categories}"></span><br>
+                                    Tags: <span th:text="${newsInfo.tags}"></span><br><br>
+                                    Published: <span th:text="${newsInfo.published_on}"></span>
+                                    <a data-th-href="${newsInfo.url}">Link</a>
+                                    <input type="checkbox" name="save" id="save"> Save
+                                </div>
+                                
                                 
                             </td>
                         </tr>
-                    </table>
-
+                    </table>        
 
                 </td>
 
@@ -44,7 +96,46 @@
             </tr>
         </table>
 
+    </div> -->
+    <div class="container">
+        <form action="/articles" method="post" data-th-object="${saveditems}">
+            <table>
+                <tr th:each="data : ${latestNews}">
+                    <td>
+                        <table>
+                            <tr th:each="newsInfo : ${data.newsInfo}">
+                                <td>
+                                    
+                                    <div class ="image">
+                                        <img data-th-src="${newsInfo.imageURL}"/><br>
+                                    </div> 
+                                    <div class="text">
+                                        Id: <span th:text="${newsInfo.id}"></span><br>
+                                        <strong><span th:text="${newsInfo.title}"></span></strong><br>
+                                        <span th:text="${newsInfo.body}"></span><br>
+                                        Categories: <span th:text="${newsInfo.categories}"></span><br>
+                                        Tags: <span th:text="${newsInfo.tags}"></span><br><br>
+                                        Published: <span th:text="${newsInfo.published_on}"></span>
+                                        <a data-th-href="${newsInfo.url}">Link</a>
+                                        <input type="checkbox" th:field="*{selectedItems[__${newsInfoStat.index}__]}" th:value="${newsInfo}"> Save
+                                    </div>
+                                    
+                                    
+                                </td>
+                            </tr>
+                        </table>        
+
+                    </td>
+
+
+
+                </tr>
+                <button type="submit">Save</button>
+            </table>
+        </form>
     </div>
+
+
 
 </body>
 

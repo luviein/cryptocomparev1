@@ -26,7 +26,6 @@ public class NewsService {
             .queryParam("appId", cryptoCompareAPIKey)
             .toUriString();
 
-        System.out.println("URL: " + newsURL);
 
         RestTemplate template = new RestTemplate();
         ResponseEntity<String> res = template.getForEntity(newsURL, String.class);

@@ -35,7 +35,6 @@ public class Data implements Serializable {
                     .toList();
 
         }
-        System.out.println(data);
         return data;
         
     }
