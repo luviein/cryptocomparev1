@@ -1,6 +1,7 @@
 package com.example.cryptocompareapi.controller;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +24,7 @@ public class NewsController {
     @GetMapping(path="/")
     public String getNews(Model m) throws IOException{
         List<Data> news = newsSvc.getArticles();
+        System.out.println("news ---->" + Arrays.toString(news.toArray()));
         m.addAttribute("latestNews", news);
         return "news";
     }

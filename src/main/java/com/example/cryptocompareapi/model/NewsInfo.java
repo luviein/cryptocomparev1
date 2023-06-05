@@ -1,14 +1,8 @@
 package com.example.cryptocompareapi.model;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
 
-import jakarta.json.Json;
-import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
-import jakarta.json.JsonReader;
 
 public class NewsInfo implements Serializable {
     private String id;
@@ -41,6 +35,12 @@ public class NewsInfo implements Serializable {
 
     
 
+    @Override
+    public String toString() {
+        return "NewsInfo [id=" + id + ", published_on=" + published_on + ", title=" + title + ", url=" + url
+                + ", imageURL=" + imageURL + ", body=" + body + ", tags=" + tags + ", categories=" + categories + "]";
+    }
+    
     public static NewsInfo createJSONObject(JsonObject o){
         var newsObj = new NewsInfo();
         newsObj.id = "%s".formatted(o.getString("id"));

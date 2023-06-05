@@ -1,13 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Latest Crypto News</title>
+
+    <style>
+
+        tr {
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+    </style>
 </head>
-<body data-th-object="${data}">
-    
-    
+
+<body>
+    <h1>Crypto News of The Day</h1>
+    <div>
+        <table>
+            <tr th:each="data : ${latestNews}" style="border: 1px solid black;">
+                <td>
+                    <table>
+                        <tr th:each="newsInfo : ${data.newsInfo}">
+                            <td>
+                                Id: <span th:text="${newsInfo.id}"></span><br>
+                                <span th:text="${newsInfo.title}"></span><br>
+                                
+                            </td>
+                        </tr>
+                    </table>
+
+
+                </td>
+
+
+
+            </tr>
+        </table>
+
+    </div>
+
 </body>
+
 </html>
