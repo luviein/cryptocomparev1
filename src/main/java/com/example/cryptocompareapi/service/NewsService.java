@@ -5,7 +5,9 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,9 +15,16 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.cryptocompareapi.model.Data;
+import com.example.cryptocompareapi.model.NewsInfo;
+
+import jakarta.json.Json;
 
 @Service
 public class NewsService {
+
+    @Autowired
+    private RedisTemplate<String, Object> template;
+
     @Value("${crypto.compare.url}")
     private String cryptoCompareAPIUrl;
     @Value("${crypto.compare.key}")
@@ -38,5 +47,11 @@ public class NewsService {
         return Collections.emptyList();
     }
 
+    public void saveArticles(List<String> savedItems){
+
+            template.opsForValue().set("test", savedItems.toString());
+
+        
+    }
 
 }

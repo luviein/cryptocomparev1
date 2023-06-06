@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.cryptocompareapi.model.Data;
 import com.example.cryptocompareapi.model.SavedItems;
-import com.example.cryptocompareapi.model.SavedItems.NewsInfo;
 import com.example.cryptocompareapi.service.NewsService;
 
 
@@ -36,11 +35,13 @@ public class NewsController {
     }
 
     @PostMapping(path="/articles")
-    public String saveArticles(@ModelAttribute("savedItems") SavedItems savedItems, Model m) throws IOException{
+    public String save(@ModelAttribute("savedItems") SavedItems savedItems, Model m) throws IOException{
         List<String> selectedNews = savedItems.getSelectedItems();
         selectedNews.removeIf(Objects::isNull);
 
         m.addAttribute("savedItems", selectedNews);
+        newsSvc.saveArticles(selectedNews);
+        System.out.println("news saved");
         System.out.println("selected news-----> " + selectedNews);
 
 

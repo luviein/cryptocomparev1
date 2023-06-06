@@ -2,6 +2,7 @@ package com.example.cryptocompareapi.model;
 
 import java.io.Serializable;
 
+import jakarta.json.Json;
 import jakarta.json.JsonObject;
 
 public class NewsInfo implements Serializable {
@@ -40,7 +41,7 @@ public class NewsInfo implements Serializable {
         return "NewsInfo [id=" + id + ", published_on=" + published_on + ", title=" + title + ", url=" + url
                 + ", imageURL=" + imageURL + ", body=" + body + ", tags=" + tags + ", categories=" + categories + "]";
     }
-    
+
     public static NewsInfo createJSONObject(JsonObject o){
         var newsObj = new NewsInfo();
         newsObj.id = "%s".formatted(o.getString("id"));
@@ -53,6 +54,20 @@ public class NewsInfo implements Serializable {
         newsObj.categories = "%s".formatted(o.getString("categories"));
 
         return newsObj;
+    }
+
+    public JsonObject toJSON(){
+        return Json.createObjectBuilder()
+            .add("id", this.getId())
+            .add("published_on ", this.getPublished_on())
+            .add("title", this.getTitle())
+            .add("url", this.getUrl())
+            .add("imageURL", this.getImageURL())
+            .add("body", this.getBody())
+            .add("tags", this.getTags())
+            .add("categories", this.getCategories())
+            .build();
+            
     }
     
 }
