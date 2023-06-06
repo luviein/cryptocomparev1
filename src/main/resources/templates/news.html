@@ -117,7 +117,7 @@
                                         Tags: <span th:text="${newsInfo.tags}"></span><br><br>
                                         Published: <span th:text="${newsInfo.published_on}"></span>
                                         <a data-th-href="${newsInfo.url}">Link</a>
-                                        <input type="checkbox" th:field="*{selectedItems[__${newsInfoStat.index}__]}" th:value="${newsInfo}"> Save
+                                        <input type="checkbox" th:field="*{selectedItems}" th:value="${newsInfo}"> Save
                                     </div>
                                     
                                     
@@ -127,7 +127,7 @@
 
                     </td>
 
-
+<!-- #[__${newsInfoStat.index}__] -->
 
                 </tr>
                 <button type="submit">Save</button>

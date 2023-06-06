@@ -6,25 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body data-th-object="${newsinfo}">
     <div class="container">
             <table>
-                <tr th:each="data : ${savedItems}">
+                <tr th:each="newsInfo : ${selectedItems}">
                     <td>
                         <table>
                                 <td>
                                     
                                     <div class ="image">
-                                        <img data-th-src="${data.imageURL}"/><br>
+                                        <img data-th-src="${newsinfo.imageURL}"/><br>
                                     </div> 
                                     <div class="text">
-                                        Id: <span th:text="${data.id}"></span><br>
-                                        <strong><span th:text="${data.title}"></span></strong><br>
-                                        <span th:text="${data.body}"></span><br>
-                                        Categories: <span th:text="${data.categories}"></span><br>
-                                        Tags: <span th:text="${data.tags}"></span><br><br>
-                                        Published: <span th:text="${data.published_on}"></span>
-                                        <a data-th-href="${data.url}">Link</a>
+                                        Id: <span th:text="${newsinfo.id}"></span><br>
+                                        <strong><span th:text="${newsinfo.title}"></span></strong><br>
+                                        <span th:text="${newsinfo.body}"></span><br>
+                                        Categories: <span th:text="${newsinfo.categories}"></span><br>
+                                        Tags: <span th:text="${newsinfo.tags}"></span><br><br>
+                                        Published: <span th:text="${newsinfo.published_on}"></span>
+                                        <a data-th-href="${newsinfo.url}">Link</a>
 
                                     </div>
                                     
